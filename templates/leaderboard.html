@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Leaderboard - CS2 Score Keeper
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<div class="container leaderboard">
+
+    <div class="logo">
+        🏆
+    </div>
+
+    <h1>
+        Leaderboard
+    </h1>
+
+    <p>
+        Top CS2 Score Keeper Players
+    </p>
+
+
+    <div class="leaderboard-list">
+
+        {% if players %}
+
+            {% for username, data in players %}
+
+                <div class="player-row">
+
+                    <span class="rank">
+
+                        {% if loop.index == 1 %}
+
+                            🥇
+
+                        {% elif loop.index == 2 %}
+
+                            🥈
+
+                        {% elif loop.index == 3 %}
+
+                            🥉
+
+                        {% else %}
+
+                            #{{ loop.index }}
+
+                        {% endif %}
+
+                    </span>
+
+
+                    <span class="player-name">
+                        {{ username }}
+                    </span>
+
+
+                    <span class="player-score">
+                        {{ data["score"] }} 🏆
+                    </span>
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p>
+                No players yet.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <div class="buttons">
+
+        <a href="/">
+            🏠 Home
+        </a>
+
+        {% if session.get("username") %}
+
+            <a href="/dashboard">
+                📊 Dashboard
+            </a>
+
+        {% else %}
+
+            <a href="/login">
+                🔐 Login
+            </a>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

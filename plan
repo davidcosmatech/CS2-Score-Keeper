@@ -1,0 +1,14 @@
+CS2-Score-Keeper/
+│
+├── app.py
+├── players.json
+│
+├── templates/
+│   ├── index.html
+│   ├── register.html
+│   ├── login.html
+│   ├── dashboard.html
+│   └── leaderboard.html
+│
+└── static/
+    └── style.css

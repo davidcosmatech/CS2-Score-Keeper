@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Dashboard - CS2 Score Keeper
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<div class="container dashboard">
+
+    <div class="logo">
+        🎮
+    </div>
+
+    <h1>
+        Welcome, {{ username }}!
+    </h1>
+
+    <p>
+        {{ email }}
+    </p>
+
+
+    <!-- SCORE -->
+
+    <div class="score-box">
+
+        <p>
+            YOUR SCORE
+        </p>
+
+        <h2>
+            {{ score }}
+        </h2>
+
+        <span>
+            POINTS
+        </span>
+
+    </div>
+
+
+    <!-- ADD SCORE -->
+
+    <h3>
+        ➕ Add Points
+    </h3>
+
+    <form
+        action="/add-score"
+        method="POST"
+    >
+
+        <input
+            type="number"
+            name="points"
+            min="1"
+            placeholder="Points"
+            required
+        >
+
+        <button type="submit">
+            ➕ Add Points
+        </button>
+
+    </form>
+
+
+    <!-- REMOVE SCORE -->
+
+    <h3>
+        ➖ Remove Points
+    </h3>
+
+    <form
+        action="/remove-score"
+        method="POST"
+    >
+
+        <input
+            type="number"
+            name="points"
+            min="1"
+            placeholder="Points"
+            required
+        >
+
+        <button type="submit">
+            ➖ Remove Points
+        </button>
+
+    </form>
+
+
+    <!-- NAVIGATION -->
+
+    <div class="buttons">
+
+        <a href="/leaderboard">
+            🏆 Leaderboard
+        </a>
+
+        <a href="/logout">
+            🚪 Logout
+        </a>
+
+    </div>
+
+
+    <!-- DELETE ACCOUNT -->
+
+    <div class="danger-zone">
+
+        <h3>
+            ⚠️ Danger Zone
+        </h3>
+
+        <p>
+            Deleting your account permanently
+            removes your account and score.
+        </p>
+
+        <form
+            action="/delete-account"
+            method="POST"
+            onsubmit="return confirm('Are you sure you want to delete your account? This cannot be undone!');"
+        >
+
+            <button
+                type="submit"
+                class="delete-button"
+            >
+                🗑️ Delete Account
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
